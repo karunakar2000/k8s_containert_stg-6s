@@ -11,10 +11,11 @@ resource "aws_security_group" "main" {
   }
   
   tags = merge(
-    var.sg_tags, local.common_tags, 
+    var.sg_tags, 
+    local.common_tags, 
     {
-        Name = "${local.resource_name_prefix}-${var.sg_name}" # ProjectName-Env-SGname
+      Name = "${local.resource_name_prefix}-${var.sg_name}" # ProjectName-Env-SGname
     }
   
-    ) 
+  ) 
 }

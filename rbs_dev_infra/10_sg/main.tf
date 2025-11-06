@@ -11,4 +11,11 @@
 
 module "sg" {
   source = "git::https://github.com/karunakar2000/k8s_containert_stg-6s.git//terraform_custom_module_sg"
+  project_name  =
+  environment   =
+  sg_name =
+  sg_description  =
+  vpc_id  =
+
+
 }

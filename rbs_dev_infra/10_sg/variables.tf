@@ -9,3 +9,7 @@ variable "environment" {
 variable "sg_names" {
     default = ["mongodb", "redis", "mysql", "rabbitmq"]
 }
+
+variable "sg_tags" {
+    default = "sg"
+}

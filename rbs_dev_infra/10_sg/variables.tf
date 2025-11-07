@@ -6,7 +6,7 @@ variable "environment" {
     default = "DEV"
 }
 
-variable "sg_names" {
-    default = ["mongodb", "redis", "mysql", "rabbitmq"]
-}
+# variable "sg_names" {
+#     default = ["mongodb", "redis", "mysql", "rabbitmq"]
+# }
 

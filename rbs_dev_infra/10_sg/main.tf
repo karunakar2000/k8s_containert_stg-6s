@@ -14,8 +14,8 @@ module "sg" {
   source = "git::https://github.com/karunakar2000/k8s_containert_stg-6s.git/terraform_custom_module_sg"
   project_name  = var.project_name
   environment   = var.environment
-  sg_name = var.sg_names[count.index]
-  sg_description  = "Created For ${var.sg_names[count.index]}"
+  sg_name = "mongodb"
+  sg_description  = "Created For Mongodb"
   vpc_id  = local.vpc_id
 
 }

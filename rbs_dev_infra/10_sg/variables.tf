@@ -13,7 +13,9 @@ variable "sg_names" {
      # Backend
      "catalogue", "user", "cart", "shipping", "payment",
      # Frontend
-     "frontend"
+     "frontend",
+     # Bastion
+     "bastion"
     
     
     ]

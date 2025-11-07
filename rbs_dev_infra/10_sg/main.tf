@@ -11,7 +11,7 @@
 
 module "sg" {
   count = length(var.sg_names)
-  source = "git::https://github.com/karunakar2000/k8s_containert_stg-6s.git//terraform_custom_module_sg"
+  source = "git::https://github.com/karunakar2000/k8s_containert_stg-6s.git/terraform_custom_module_sg/ref=main"
   project_name  = var.project_name
   environment   = var.environment
   sg_name = var.sg_names[count.index]

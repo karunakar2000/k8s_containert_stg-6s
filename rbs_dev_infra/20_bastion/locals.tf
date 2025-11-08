@@ -1,6 +1,6 @@
 locals {
     ami_id = data.aws_ami.devsecops.id
-    bastion_sg_ig = data.aws_ssm_parameter.bastion_sg_ig.value
+    bastion_sg_id = data.aws_ssm_parameter.bastion_sg_id.value
 
     common_tags = {
         Project = var.project_name

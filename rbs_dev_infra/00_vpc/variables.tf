@@ -3,7 +3,7 @@ variable "cidr_block" {
 }
 
 variable "project_name" {
-    default = "rbs"
+    default = "RBS"
 }
 
 variable "environment" {

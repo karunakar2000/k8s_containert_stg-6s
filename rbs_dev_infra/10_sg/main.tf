@@ -19,3 +19,12 @@ module "sg" {
   vpc_id  = local.vpc_id
 
 }
+
+# # Frontend servers accepting from frontend ALB 
+# resource "aws_security_group_rule" "frontend_frontend_alb" {
+#   security_group_id = module.sg[9].sg_id
+#   source_security_group_id = module.sg[11].sg_id
+#   from_port         = 80
+#   ip_protocol       = "tcp"
+#   to_port           = 80
+# }

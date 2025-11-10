@@ -18,6 +18,8 @@ variable "sg_names" {
      "bastion-sg",
      # Frontend LoadBalancer 
      "frontend-lb-sg"
+     # Backend ALB
+     "backend-alb"
     
     
     ]

@@ -11,13 +11,13 @@ variable "sg_names" {
      # Databases
      "mongodb-sg", "redis-sg", "mysql-sg", "rabbitmq-sg",
      # Backend
-     "catalogue", "user", "cart", "shipping", "payment",
+     "catalogue-sg", "user-sg", "cart-sg", "shipping-sg", "payment-sg",
      # Frontend
-     "frontend",
+     "frontend-sg",
      # Bastion
-     "bastion",
+     "bastion-sg",
      # Frontend LoadBalancer 
-     "frontend-lb"
+     "frontend-lb-sg"
     
     
     ]

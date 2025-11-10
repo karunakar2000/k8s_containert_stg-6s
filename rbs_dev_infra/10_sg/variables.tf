@@ -1,5 +1,5 @@
 variable "project_name" {
-    default = "RBS"
+    default = "rbs"
 }
 
 variable "environment" {

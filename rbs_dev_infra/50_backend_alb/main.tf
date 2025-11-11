@@ -13,7 +13,7 @@ resource "aws_lb" "backend-alb" {
       Name = "${local.resource_name_prefix}-backend-alb"
     }
   )
-
+}
 
 resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.backend-alb.arn

@@ -23,7 +23,7 @@ data "aws_ami" "devsecops" {
 
   filter {
     name   = "name"
-    values = [RHEL-9-DevOps-Practice]
+    values = ["RHEL-9-DevOps-Practice"]
   }
   filter {
     name   = "root-device-type"

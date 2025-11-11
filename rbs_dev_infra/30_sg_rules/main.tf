@@ -10,12 +10,12 @@ resource "aws_security_group_rule" "backend_alb_bastion" {
 
 
 
-# From Laptop to Bastion VM
-resource "aws_security_group_rule" "bastion_laptop" {
-  security_group_id = local.bastion-sg_sg_id
-  cidr_blocks       = ["0.0.0.0/0"]
-  type              = "ingress"
-  from_port         = 22
-  protocol          = "tcp"
-  to_port           = 22
-}
+# # From Laptop to Bastion VM
+# resource "aws_security_group_rule" "bastion_laptop" {
+#   security_group_id = local.bastion-sg_sg_id
+#   cidr_blocks       = ["0.0.0.0/0"]
+#   type              = "ingress"
+#   from_port         = 22
+#   protocol          = "tcp"
+#   to_port           = 22
+# }

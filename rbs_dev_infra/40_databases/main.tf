@@ -11,5 +11,7 @@ resource "aws_instance" "mongodb" {
     }
   )
 
-  
+  provissioner "remote_exec" {
+    
+  }
 }

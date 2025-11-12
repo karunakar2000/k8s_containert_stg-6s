@@ -11,7 +11,15 @@ resource "aws_instance" "mongodb" {
     }
   )
 
-  provissioner "remote_exec" {
-    
+}
+
+resource "terraform_data" "bootstrap" {
+  triggers_replace = [
+    aws_instance.web.id,
+    aws_instance.database.id
+  ]
+
+  provisioner "local-exec" {
+    command = "bootstrap-hosts.sh"
   }
 }

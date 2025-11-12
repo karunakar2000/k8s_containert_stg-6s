@@ -17,7 +17,16 @@ resource "terraform_data" "mongodb" {
   triggers_replace = [
     aws_instance.mongodb.id
   ]
+
+  connection {
+    type      = "ssh"
+    user      = "ec2-user"
+    password  = "DevOps321"
+    host      = aws_instance.mongodb.private_ip
+  }
   provisioner "remote-exec" {
-    command = "bootstrap-hosts.sh"
+    inline = [
+      "echo Hello World"
+    ]
   }
 }

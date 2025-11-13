@@ -29,3 +29,13 @@ resource "aws_security_group_rule" "mongodb_bastion" {
   protocol          = "tcp"
   to_port           = 22
 }
+
+# redis accepting Bastion
+resource "aws_security_group_rule" "redis_bastion" {
+  security_group_id = local.redis-sg_sg_id
+  source_security_group_id  = local.bastion-sg_sg_id
+  type              = "ingress"
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}

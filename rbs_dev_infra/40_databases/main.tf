@@ -39,7 +39,6 @@ resource "terraform_data" "mongodb" {
   }
 }
 
-
 resource "aws_instance" "redis" {
   ami                    = local.ami_id
   instance_type          = "t3.micro"
@@ -67,6 +66,47 @@ resource "terraform_data" "redis" {
   }
   
   # Terraform copies this file to redis server
+  provisioner "file" {
+    source = "bootstrap.sh"
+    destination = "/tmp/bootstrap.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/bootstrap.sh",
+      "sudo bash /tmp/bootstrap.sh redis"
+    ]
+  }
+}
+
+
+resource "aws_instance" "rabbitmq" {
+  ami                    = local.ami_id
+  instance_type          = "t3.micro"
+  vpc_security_group_ids = [local.rabbitmq_sg_id]
+  subnet_id = local.database_subnet_ids
+  
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${local.resource_name_prefix}-rabbitmq" # RBS-DEV-mongodb
+    }
+  )
+}
+
+resource "terraform_data" "rabbitmq" {
+  triggers_replace = [
+    aws_instance.rabbitmq.id
+  ]
+
+  connection {
+    type      = "ssh"
+    user      = "ec2-user"
+    password  = "DevOps321"
+    host      = aws_instance.rabbitmq.private_ip
+  }
+  
+  # Terraform copies this file to rabbitmq server
   provisioner "file" {
     source = "bootstrap.sh"
     destination = "/tmp/bootstrap.sh"

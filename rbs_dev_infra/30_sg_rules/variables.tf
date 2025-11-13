@@ -1,7 +1,7 @@
 variable "project_name" {
-    default = "RBS"
+  default = "RBS"
 }
 
 variable "environment" {
-    default = "DEV"
+  default = "DEV"
 }

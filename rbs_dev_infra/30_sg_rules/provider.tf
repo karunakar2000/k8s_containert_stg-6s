@@ -6,14 +6,14 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "devsecops42"
-    key    = "dev_module_backend"
-    region = "us-east-1"
+    bucket       = "devsecops42"
+    key          = "dev_module_backend"
+    region       = "us-east-1"
     use_lockfile = true
-    encrypt = true
+    encrypt      = true
   }
 }
 
 provider "aws" {
-    region = "us-east-1"
+  region = "us-east-1"
 }

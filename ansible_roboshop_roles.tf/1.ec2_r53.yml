@@ -1,0 +1,76 @@
+- name: create ec2 and r53
+  hosts: local
+  connection: local
+  vars:
+    ami_id: ami-09c813fb71547fc4f
+    sg_id: sg-056f6ae1ff0429ac9
+    zone_id: "Z09150472BEG29NERJFM7"
+    domain_name: "dso86s.xyz"
+    subnet_id: subnet-02a9e2ee3cabd4c49
+    instances: 
+    # - mongodb
+    # - redis
+    # - mysql
+    # - rabbitmq
+    # - catalogue
+    # - user
+    # - cart
+    # - shipping
+    # - payment
+    # - frontend
+  tasks:
+    - name: create ec2 instance
+      amazon.aws.ec2_instance:
+        name: "{{ item }}" 
+        instance_type: t3.micro
+        security_group: "{{ sg_id }}"
+        image_id: "{{ ami_id }}"
+        vpc_subnet_id: "{{ subnet_id }}"
+        tags:
+          Name: "{{ item }}"
+      loop: "{{ instances }}"
+      register: ec2_output # Saves the output of the EC2 creation process into a variable for later use.
+
+    - name: print the ec2_output
+      ansible.builtin.debug:
+        msg: "{{ ec2_output }}"
+    
+    # - name: print public IP 
+    #   ansible.builtin.debug: 
+    #     msg: "Public IP: {{ item.instances[0].public_ip_address }}"
+    #   loop: "{{ ec2_output.results }}"
+    #   loop_control:
+    #     label: "{{ item.instances[0].tags.Name }}"
+
+    # - name: print private IP 
+    #   ansible.builtin.debug: 
+    #     msg: "Private IP: {{ item.instances[0].private_ip_address }}"
+    #   loop: "{{ ec2_output.results }}"
+    #   loop_control:
+    #     label: "{{ item.instances[0].tags.Name }}"
+
+    # Create ansible route53 modules
+    - name: create route53 records 
+      amazon.aws.route53:
+        state: present
+        zone: "{{ domain_name }}"
+        record: "{{ item.item }}.{{ domain_name }}" # mongodb.dso86s.xyz
+        type: A
+        ttl: 1
+        value: "{{ item.instances[0].private_ip_address }}"
+        overwrite: true
+      loop: "{{ ec2_output.results }}"
+      
+    # we are creating one record with public ip only for frontend
+    # - name: create route53 records for front end
+    #   amazon.aws.route53:
+    #     state: present
+    #     zone: "{{ domain_name }}"
+    #     record: "{{ domain_name }}" 
+    #     type: A
+    #     ttl: 1
+    #     value: "{{ item.instances[0].public_ip_address }}"
+    #     overwrite: true
+    #   when: item.item == "frontend"
+    #   loop: "{{ ec2_output.results }}"
+    

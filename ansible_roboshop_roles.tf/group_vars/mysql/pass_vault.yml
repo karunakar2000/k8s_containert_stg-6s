@@ -1,0 +1,3 @@
+# Used AWS SSM Parameter Store:-
+MYSQL_ROOT_PASSWORD: "{{ lookup('amazon.aws.aws_ssm', '/roboshop/mysql_root_pass', region='us-east-1', decrypt=True ) }}"
+

@@ -10,7 +10,6 @@ resource "aws_instance" "mongodb" {
       Name = "${local.resource_name_prefix}-mongodb" # RBS-DEV-mongodb
     }
   )
-
 }
 
 resource "terraform_data" "mongodb" {
@@ -38,5 +37,3 @@ resource "terraform_data" "mongodb" {
     ]
   }
 }
-
-

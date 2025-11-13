@@ -36,7 +36,3 @@ resource "terraform_data" "mongodb" {
 
 
 
-
-
-
-

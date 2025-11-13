@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket = "devsecops42"
-    key    = "dev_module_databases"
+    key    = "dev_module_databases-2"
     region = "us-east-1"
     use_lockfile = true
     encrypt = true

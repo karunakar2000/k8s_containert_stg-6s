@@ -119,3 +119,6 @@ resource "terraform_data" "rabbitmq" {
     ]
   }
 }
+
+
+

@@ -18,6 +18,3 @@ module "vpc" {
     # If user dont need vpc peering 
     if_peering_require = false
 }
-
-
-

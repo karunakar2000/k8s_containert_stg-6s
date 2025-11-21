@@ -10,5 +10,3 @@ locals {
         Terraform = true
     }
 }
-
-
